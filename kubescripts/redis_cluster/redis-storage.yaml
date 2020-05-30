@@ -1,0 +1,83 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: data-redis-0
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data/redis-0"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: data-redis-1
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data/redis-1"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: data-redis-2
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data/redis-2"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: data-redis-3
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data/redis-3"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: data-redis-4
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data/redis-4"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: data-redis-5
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data/redis-5"

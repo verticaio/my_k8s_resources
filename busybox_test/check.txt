@@ -1,0 +1,5 @@
+kubectl exec -ti busybox -- nslookup  postgres
+
+kubectl exec busybox cat /etc/resolv.conf
+
+kubectl get pods --namespace=kube-system -l k8s-app=kube-dns

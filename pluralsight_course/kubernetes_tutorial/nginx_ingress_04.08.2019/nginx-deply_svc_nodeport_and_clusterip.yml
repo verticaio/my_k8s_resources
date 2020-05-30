@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-test
+spec:
+  selector:
+    matchLabels:
+      app: nginx-test
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-test
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx-test
+  ports:
+  - protocol: TCP
+    port: 8081
+    targetPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-service-nodeport
+spec:
+  selector:
+    app: nginx-test
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 8081
+    targetPort: 80
+    nodePort: 31888  ##Service type NodePort will make all nodes in the cluster (including the master node) bind a given userspace port (starting at 31000) to a service,Our pod is still exposing port 8081 internally, but now it's also available on all nodes at port 31888

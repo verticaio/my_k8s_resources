@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+  namespace: default
+spec:
+  containers:
+  - image: busybox
+    command:
+      - sleep
+      - "3600"
+    imagePullPolicy: IfNotPresent
+    name: busybox
+    restartPolicy: Always
+    resources:
+        limits:
+          memory: 2000Mi
+        requests:
+          cpu: 500m
+          memory: 500Mi
+    env:
+    - name: Token
+      value: "3123213213123132213213"
+    - name: myusername
+      valueFrom:
+        secretKeyRef:
+          name: secret-demo
+          key: username
+    - name: CHANNELNAME
+      valueFrom:
+        configMapKeyRef:
+          name: demo-configmap
+          key: channel.name
+    - name: CHANNELOWNER
+      valueFrom:
+        configMapKeyRef:
+          name: demo-configmap
+          key: channel.owner

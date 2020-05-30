@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-dep
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-dep
+  template:
+    metadata:
+      labels:
+        app: hello-dep
+    spec:
+      terminationGracePeriodSeconds: 15
+      containers:
+      - image: babakmammadov95/hello-world:v2.0.0 
+        imagePullPolicy: IfNotPresent
+        name: hello-dep
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1 #version of the API to use
+kind: Service #What kind of object we're deploying
+metadata: #information about our object we're deploying
+  name: hello-dep #Name of the service
+spec: #specifications for our object
+  type: NodePort #Ignore for now discussed in a future post
+  ports: #Ignore for now discussed in a future post
+  - name: http
+    port: 80           # Cluster IP port which you get services  with kubectl
+    targetPort: 80        # Pod port
+    protocol: TCP
+    nodePort: 30080
+  selector: #Label selector used to identify pods
+    app: hello-dep

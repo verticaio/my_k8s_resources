@@ -1,0 +1,30 @@
+kind: Endpoints
+apiVersion: v1
+metadata:
+  name: mongo
+subsets:
+  - addresses:
+      - ip: 10.240.0.4
+    ports:
+      - port: 27017
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name:
+Spec:
+  type: ClusterIP
+  ports:
+  - port: 27017
+    targetPort: 27017
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mongo
+spec:
+  type: ExternalName
+  externalName: ds12345.mblab.local
+# mongodb://<dbuser>:<dbpassword>@mongo:<port>/dev
+#MappingExternalSrevices : bu o demekdir ki sen kubernetes xaricinden dabatase qoshulmasisan ve ya service cagirmalisan, o zaman envrioment yazmayasan. onun uchun bi dene endpoint yaradasan ve service yaradasan(service zaten eyni adli endpointe gonderecek traffiki)
+# for calling any another pod  mongodb://mongo

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [[ -z "$KUBESH_CONTEXT" ]]; then
+    echo "kubectl(kubesh): KUBESH_CONTEXT is required"
+    exit 1
+fi
+
+if [[ -z "$KUBESH_KUBECTL" ]]; then
+    echo "kubectl(kubesh): KUBESH_KUBECTL is required"
+    exit 1
+fi
+
+KUBECTL_ARGS=
+if [[ $# -gt 0 ]]; then
+case $1 in
+    help|config)
+        KUBECTL_ARGS="$@"
+        ;;
+    *)
+        KUBECTL_ARGS="--context=$KUBESH_CONTEXT $@"
+        ;;
+esac
+fi
+exec $KUBESH_KUBECTL $KUBECTL_ARGS

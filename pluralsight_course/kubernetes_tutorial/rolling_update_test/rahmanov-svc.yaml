@@ -1,0 +1,15 @@
+apiVersion: v1 #version of the API to use
+kind: Service #What kind of object we're deploying
+metadata: #information about our object we're deploying
+  name: myapp-deployment #Name of the service
+spec: #specifications for our object
+  type: NodePort #Ignore for now discussed in a future post
+  ports: #Ignore for now discussed in a future post
+  - name: http
+    port: 80
+    targetPort: 80
+    nodePort: 30394
+    protocol: TCP
+  selector: #Label selector used to identify pods
+    app: myapp
+

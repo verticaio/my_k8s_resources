@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginxru
+spec:
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        service: http-server
+    spec:
+      containers:
+      - name: nginxru
+        image: nginx:1.10.2
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80

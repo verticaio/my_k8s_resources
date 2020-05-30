@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"/home/babak/Desktop/Development/Scripts/Scripts/kubernetes-course","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}

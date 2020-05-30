@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kubernetes.io/change-cause: "Updated latest nginx 1.15 docker version"
+  labels:
+    run: nginx-rolup
+  name: nginx-rolup-deploy
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      run: nginx-rolup
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+  minReadySeconds: 5
+  revisionHistoryLimit: 10
+  template:
+    metadata:
+      labels:
+        run: nginx-rolup
+    spec:
+      containers:
+      - image: nginx:1.15
+        name: nginx-rolup

@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+spec:
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp-container
+        image: jahongirr/myapp:1
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 80
+            protocol: TCP
